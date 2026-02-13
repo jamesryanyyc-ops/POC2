@@ -39,7 +39,7 @@ export function Sidebar() {
   ];
 
   return (
-    <div className="hidden md:flex flex-col h-full w-[72px] hover:w-[244px] border-r border-sidebar-border bg-sidebar text-sidebar-foreground fixed left-0 top-0 p-3 pt-8 pb-5 z-50 transition-all duration-300 ease-in-out group/sidebar overflow-hidden shadow-lg hover:shadow-xl">
+    <div className="hidden md:flex flex-col h-full w-[72px] hover:w-[244px] border-r border-sidebar-border bg-sidebar text-sidebar-foreground fixed left-0 top-0 p-3 pt-8 pb-5 z-50 transition-all duration-300 ease-in-out group/sidebar overflow-hidden">
       <div className="px-3 mb-8 h-8 flex items-center">
         {/* Full Logo - visible on hover */}
         <div className="hidden group-hover/sidebar:block w-full transition-opacity duration-300 animate-in fade-in zoom-in-95">

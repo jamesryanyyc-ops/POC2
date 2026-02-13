@@ -24,7 +24,7 @@ export function PostModal({ post, children, isLiked, isSaved, onLike, onSave, li
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="max-w-[1100px] h-[90vh] md:h-[calc(100vh-40px)] p-0 gap-0 overflow-hidden flex flex-col md:flex-row border-none bg-background rounded-r-lg">
+      <DialogContent className="w-[60vw] h-[90vh] max-w-none p-0 gap-0 overflow-hidden flex flex-col md:flex-row border-none bg-background rounded-r-lg">
         <VisuallyHidden.Root>
             <DialogTitle>Post by {post.user.username}</DialogTitle>
             <DialogDescription>{post.caption}</DialogDescription>
