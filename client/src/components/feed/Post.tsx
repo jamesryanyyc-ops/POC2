@@ -5,6 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import type { Post as PostType } from "@/lib/data";
+import { PostModal } from "./PostModal";
 
 interface PostProps {
   post: PostType;
@@ -23,6 +24,8 @@ export function Post({ post }: PostProps) {
     }
     setIsLiked(!isLiked);
   };
+  
+  const handleSave = () => setIsSaved(!isSaved);
 
   return (
     <div className="border-b md:border md:rounded-lg border-border mb-4 bg-card md:max-w-[470px] mx-auto">
@@ -68,14 +71,26 @@ export function Post({ post }: PostProps) {
                 className={cn("h-6 w-6 transition-colors", isLiked ? "fill-red-500 stroke-red-500" : "stroke-current")} 
               />
             </button>
-            <button className="hover:opacity-60 transition-opacity">
-              <MessageCircle className="h-6 w-6 -rotate-90" />
-            </button>
+            
+            {/* Comment Trigger */}
+            <PostModal 
+                post={post} 
+                isLiked={!!isLiked} 
+                isSaved={!!isSaved} 
+                likesCount={likesCount} 
+                onLike={handleLike} 
+                onSave={handleSave}
+            >
+                <button className="hover:opacity-60 transition-opacity">
+                    <MessageCircle className="h-6 w-6 -rotate-90" />
+                </button>
+            </PostModal>
+
             <button className="hover:opacity-60 transition-opacity">
               <Send className="h-6 w-6" />
             </button>
           </div>
-          <button onClick={() => setIsSaved(!isSaved)} className="hover:opacity-60 transition-opacity">
+          <button onClick={handleSave} className="hover:opacity-60 transition-opacity">
             <Bookmark className={cn("h-6 w-6", isSaved ? "fill-foreground" : "stroke-current")} />
           </button>
         </div>
@@ -88,19 +103,19 @@ export function Post({ post }: PostProps) {
         </div>
         
         {post.comments.length > 0 && (
-          <button className="text-muted-foreground text-sm mb-1 hover:text-foreground">
-            View all {post.comments.length} comments
-          </button>
+          <PostModal 
+            post={post} 
+            isLiked={!!isLiked} 
+            isSaved={!!isSaved} 
+            likesCount={likesCount} 
+            onLike={handleLike} 
+            onSave={handleSave}
+          >
+            <button className="text-muted-foreground text-sm mb-1 hover:text-foreground">
+                View all {post.comments.length} comments
+            </button>
+          </PostModal>
         )}
-        
-        <div className="flex items-center gap-2 mt-2">
-           <input 
-             type="text" 
-             placeholder="Add a comment..." 
-             className="text-sm w-full bg-transparent border-none focus:ring-0 p-0 placeholder:text-muted-foreground"
-           />
-           <button className="text-blue-500 font-semibold text-sm opacity-50 hover:opacity-100">Post</button>
-        </div>
       </div>
     </div>
   );
