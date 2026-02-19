@@ -184,4 +184,8 @@
   .story-ring-inner {
     @apply border-2 border-background rounded-full;
   }
+  
+  body[data-scroll-locked] #floating-messages {
+    display: none !important;
+  }
 }
