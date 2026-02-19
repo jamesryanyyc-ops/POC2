@@ -39,7 +39,7 @@ export function Sidebar() {
         {/* Full Logo - visible on hover */}
         <div className="hidden group-hover/sidebar:flex w-full items-center gap-3 transition-opacity duration-300 animate-in fade-in zoom-in-95">
            <img src={logoImage} alt="Logo" className="h-8 w-auto dark:invert" />
-           <span className="font-serif text-xl font-bold tracking-tight select-none">Messages</span>
+           <span className="font-sans text-xl font-semibold tracking-tight select-none">InstaVibe</span>
         </div>
         
         {/* Icon Logo - visible by default, hidden on hover */}

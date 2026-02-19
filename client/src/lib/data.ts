@@ -43,7 +43,7 @@ export const CURRENT_USER: User = {
   id: "me",
   username: "design.engineer",
   fullName: "Design Engineer",
-  avatar: "/images/avatar_1.jpg",
+  avatar: "/images/avatar_me.jpg",
   bio: "Creating digital experiences 🎨\n📍 San Francisco",
   followers: 1240,
   following: 450,
@@ -55,7 +55,7 @@ export const USERS: User[] = [
     id: "u1",
     username: "alex_photos",
     fullName: "Alex Rivera",
-    avatar: "/images/avatar_1.jpg",
+    avatar: "/images/avatar_alex.jpg",
     isVerified: true,
   },
   {
