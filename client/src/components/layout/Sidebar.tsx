@@ -112,18 +112,18 @@ export function Sidebar() {
               </div>
             );
 
-            if (item.action) {
-              return (
-                <button key={item.label} onClick={item.action} className="w-full text-left block">
-                  {content}
-                </button>
-              );
-            }
-
             return (
-              <Link key={item.label} href={item.href || "#"}>
-                <a className="block w-full">{content}</a>
-              </Link>
+              <div key={item.label} className="w-full block">
+                {item.action ? (
+                  <button onClick={item.action} className="w-full text-left block">
+                    {content}
+                  </button>
+                ) : (
+                  <Link href={item.href || "#"}>
+                    <a className="block w-full">{content}</a>
+                  </Link>
+                )}
+              </div>
             );
           })}
         </nav>
