@@ -11,20 +11,20 @@ export function FloatingMessages() {
 
   return (
     <div id="floating-messages" className="fixed bottom-10 right-10 z-[100] animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="bg-white dark:bg-zinc-900 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-border py-4 px-6 flex items-center gap-4 cursor-pointer hover:scale-105 transition-transform min-w-[280px] justify-between">
+      <div className="bg-white dark:bg-zinc-900 rounded-full shadow-[0_8px_30px_rgb(0,0,0,0.12)] border border-border py-3 px-4 flex items-center gap-3 cursor-pointer hover:scale-105 transition-transform min-w-[196px] justify-between">
         
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
             {/* Using the newly provided logo instead of the SVG icon */}
-            <img src={logoImage} alt="Messages" className="h-6 w-6 dark:invert" />
+            <img src={logoImage} alt="Messages" className="h-4 w-4 dark:invert" />
 
             {/* Text */}
-            <span className="font-bold text-lg">Messages</span>
+            <span className="font-bold text-sm">Messages</span>
         </div>
 
         {/* Avatar Stack */}
-        <div className="flex items-center -space-x-4 pl-2">
+        <div className="flex items-center -space-x-3 pl-2">
           {messageUsers.map((user, i) => (
-            <Avatar key={user.id} className="h-10 w-10 border-2 border-white dark:bg-zinc-900 dark:border-zinc-900 ring-1 ring-black/5 dark:ring-white/10">
+            <Avatar key={user.id} className="h-7 w-7 border-2 border-white dark:bg-zinc-900 dark:border-zinc-900 ring-1 ring-black/5 dark:ring-white/10">
               <AvatarImage src={user.avatar} />
               <AvatarFallback>{user.username[0]}</AvatarFallback>
             </Avatar>
