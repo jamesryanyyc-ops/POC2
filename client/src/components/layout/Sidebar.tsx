@@ -21,15 +21,28 @@ import { Input } from "@/components/ui/input";
 export function Sidebar() {
   const [location] = useLocation();
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearchClick = () => {
+    setIsSearchOpen(!isSearchOpen);
+    if (!isSearchOpen) setIsNotificationsOpen(false);
+  };
+
+  const handleNotificationsClick = () => {
+    setIsNotificationsOpen(!isNotificationsOpen);
+    if (!isNotificationsOpen) setIsSearchOpen(false);
+  };
+
+  const isAnyPaneOpen = isSearchOpen || isNotificationsOpen;
 
   const navItems = [
     { icon: Home, label: "Home", href: "/" },
-    { icon: Search, label: "Search", action: () => setIsSearchOpen(!isSearchOpen) },
+    { icon: Search, label: "Search", action: handleSearchClick },
     { icon: Compass, label: "Explore", href: "/explore" },
     { icon: Film, label: "Reels", href: "/reels" },
     { icon: MessageCircle, label: "Messages", href: "/messages" },
-    { icon: Heart, label: "Notifications", href: "/notifications" },
+    { icon: Heart, label: "Notifications", action: handleNotificationsClick },
     { icon: PlusSquare, label: "Create", href: "/create" },
     {
       icon: null, // Special case for profile
@@ -50,23 +63,23 @@ export function Sidebar() {
       <div 
         className={cn(
           "hidden md:flex flex-col h-full border-r border-sidebar-border bg-sidebar text-sidebar-foreground fixed left-0 top-0 p-3 pt-8 pb-5 z-50 transition-all duration-300 ease-in-out overflow-hidden",
-          isSearchOpen ? "w-[72px]" : "w-[72px] hover:w-[244px] group/sidebar"
+          isAnyPaneOpen ? "w-[72px]" : "w-[72px] hover:w-[244px] group/sidebar"
         )}
       >
         <div className="px-3 mb-8 h-8 flex items-center relative">
-          {/* Full Logo - visible on hover (only if search is closed) */}
+          {/* Full Logo - visible on hover (only if no pane is open) */}
           <div className={cn(
             "hidden w-full items-center gap-3 transition-opacity duration-300 animate-in fade-in zoom-in-95",
-            !isSearchOpen && "group-hover/sidebar:flex"
+            !isAnyPaneOpen && "group-hover/sidebar:flex"
           )}>
             <img src={logoImage} alt="Logo" className="h-8 w-auto dark:invert" />
             <span className="font-sans text-xl font-semibold tracking-tight select-none">InstaVibe</span>
           </div>
           
-          {/* Icon Logo - visible by default, hidden on hover if search is closed */}
+          {/* Icon Logo - visible by default, hidden on hover if no pane is open */}
           <div className={cn(
             "block mx-auto transition-opacity duration-300 absolute left-0 right-0 flex justify-center",
-            !isSearchOpen && "group-hover/sidebar:hidden"
+            !isAnyPaneOpen && "group-hover/sidebar:hidden"
           )}>
               <img src={logoImage} alt="Logo" className="h-8 w-8 object-contain transition-transform hover:scale-105 dark:invert" />
           </div>
@@ -74,7 +87,7 @@ export function Sidebar() {
 
         <nav className="flex-1 space-y-2">
           {navItems.map((item) => {
-            const isActive = location === item.href || (item.label === "Search" && isSearchOpen);
+            const isActive = location === item.href || (item.label === "Search" && isSearchOpen) || (item.label === "Notifications" && isNotificationsOpen);
             const Icon = item.icon;
             
             const content = (
@@ -95,17 +108,17 @@ export function Sidebar() {
                         <Icon
                         className={cn(
                             "h-6 w-6 transition-transform group-hover:scale-105",
-                            isActive && !isSearchOpen ? "stroke-[3px]" : "stroke-[2px]",
-                            isSearchOpen && item.label === "Search" && "stroke-[3px]"
+                            isActive && !isAnyPaneOpen ? "stroke-[3px]" : "stroke-[2px]",
+                            ((isSearchOpen && item.label === "Search") || (isNotificationsOpen && item.label === "Notifications")) && "stroke-[3px]"
                         )}
                         />
                     )
                     )}
                 </div>
-                {/* Text - hidden by default, visible on hover only if search is closed */}
+                {/* Text - hidden by default, visible on hover only if no pane is open */}
                 <span className={cn(
                   "opacity-0 transition-opacity duration-200 delay-75 whitespace-nowrap text-base",
-                  !isSearchOpen && "group-hover/sidebar:opacity-100"
+                  !isAnyPaneOpen && "group-hover/sidebar:opacity-100"
                 )}>
                     {item.label}
                 </span>
@@ -135,7 +148,7 @@ export function Sidebar() {
             </div>
             <span className={cn(
               "opacity-0 transition-opacity duration-200 delay-75 whitespace-nowrap text-base",
-              !isSearchOpen && "group-hover/sidebar:opacity-100"
+              !isAnyPaneOpen && "group-hover/sidebar:opacity-100"
             )}>
                 More
             </span>
@@ -246,6 +259,84 @@ export function Sidebar() {
               </div>
             </div>
           )}
+        </div>
+      </div>
+
+      {/* Notifications Panel Slide-out */}
+      <div 
+        className={cn(
+          "fixed top-0 bottom-0 left-[72px] w-[396px] bg-background border-r border-border shadow-[4px_0_24px_rgba(0,0,0,0.05)] dark:shadow-[4px_0_24px_rgba(0,0,0,0.2)] z-40 transition-transform duration-300 ease-in-out flex flex-col rounded-r-2xl overflow-hidden",
+          isNotificationsOpen ? "translate-x-0" : "-translate-x-full"
+        )}
+      >
+        <div className="p-6 pt-8 pb-4">
+          <h2 className="text-2xl font-semibold mb-6">Notifications</h2>
+        </div>
+        <div className="flex-1 overflow-y-auto px-6 pb-6">
+           <div className="font-semibold mb-4 text-base">This Month</div>
+           
+           {/* Notification items */}
+           <div className="space-y-4">
+             <div className="flex items-center gap-3 w-full cursor-pointer group">
+               <div className="story-ring p-[2px] rounded-full flex-shrink-0">
+                 <Avatar className="h-11 w-11 story-ring-inner border-2 border-background">
+                   <AvatarImage src={USERS[1].avatar} />
+                   <AvatarFallback>{USERS[1].username[0]}</AvatarFallback>
+                 </Avatar>
+               </div>
+               <div className="flex-1 text-sm text-left">
+                 <span className="font-bold">{USERS[1].username}</span> started following you. <span className="text-muted-foreground">2w</span>
+               </div>
+               <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-1.5 px-4 rounded-lg text-sm transition-colors">
+                 Follow
+               </button>
+             </div>
+             
+             <div className="flex items-center gap-3 w-full cursor-pointer group">
+               <div className="p-[2px] rounded-full flex-shrink-0">
+                 <Avatar className="h-11 w-11 border-2 border-background">
+                   <AvatarImage src={USERS[2].avatar} />
+                   <AvatarFallback>{USERS[2].username[0]}</AvatarFallback>
+                 </Avatar>
+               </div>
+               <div className="flex-1 text-sm text-left">
+                 <span className="font-bold">{USERS[2].username}</span> liked your post. <span className="text-muted-foreground">3w</span>
+               </div>
+               <div className="h-11 w-11 flex-shrink-0">
+                 <img src="/images/post_1.jpg" alt="Post" className="h-full w-full object-cover rounded-md cursor-pointer hover:opacity-80 transition-opacity" />
+               </div>
+             </div>
+
+             <div className="flex items-center gap-3 w-full cursor-pointer group">
+               <div className="p-[2px] rounded-full flex-shrink-0">
+                 <Avatar className="h-11 w-11 border-2 border-background">
+                   <AvatarImage src={USERS[3].avatar} />
+                   <AvatarFallback>{USERS[3].username[0]}</AvatarFallback>
+                 </Avatar>
+               </div>
+               <div className="flex-1 text-sm text-left">
+                 <span className="font-bold">{USERS[3].username}</span> mentioned you in a comment: "@design.engineer love this work!" <span className="text-muted-foreground">4w</span>
+               </div>
+               <div className="h-11 w-11 flex-shrink-0">
+                 <img src="/images/post_2.jpg" alt="Post" className="h-full w-full object-cover rounded-md cursor-pointer hover:opacity-80 transition-opacity" />
+               </div>
+             </div>
+             
+             <div className="flex items-center gap-3 w-full cursor-pointer group">
+               <div className="p-[2px] rounded-full flex-shrink-0">
+                 <Avatar className="h-11 w-11 border-2 border-background">
+                   <AvatarImage src={USERS[4].avatar} />
+                   <AvatarFallback>{USERS[4].username[0]}</AvatarFallback>
+                 </Avatar>
+               </div>
+               <div className="flex-1 text-sm text-left">
+                 <span className="font-bold">{USERS[4].username}</span> started following you. <span className="text-muted-foreground">4w</span>
+               </div>
+               <button className="bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 text-foreground font-semibold py-1.5 px-4 rounded-lg text-sm transition-colors">
+                 Following
+               </button>
+             </div>
+           </div>
         </div>
       </div>
     </>
