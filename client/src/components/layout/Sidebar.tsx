@@ -159,11 +159,17 @@ export function Sidebar() {
       {/* Search Panel Slide-out */}
       <div 
         className={cn(
-          "fixed top-0 bottom-0 left-[72px] w-[396px] bg-background border-r border-border shadow-[4px_0_24px_rgba(0,0,0,0.05)] dark:shadow-[4px_0_24px_rgba(0,0,0,0.2)] z-40 transition-transform duration-300 ease-in-out flex flex-col rounded-r-2xl overflow-hidden",
+          "fixed top-0 bottom-0 left-[72px] w-[396px] bg-background border-r border-border shadow-[4px_0_24px_rgba(0,0,0,0.05)] dark:shadow-[4px_0_24px_rgba(0,0,0,0.2)] z-40 transition-transform duration-300 ease-in-out flex flex-col overflow-hidden",
           isSearchOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >
-        <div className="p-6 pt-8 pb-4">
+        <div className="p-6 pt-8 pb-4 relative">
+          <button 
+            onClick={() => setIsSearchOpen(false)}
+            className="absolute top-8 right-6 text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <XCircle className="h-6 w-6" />
+          </button>
           <h2 className="text-2xl font-semibold mb-8">Search</h2>
           <div className="relative">
             <input
@@ -265,11 +271,17 @@ export function Sidebar() {
       {/* Notifications Panel Slide-out */}
       <div 
         className={cn(
-          "fixed top-0 bottom-0 left-[72px] w-[396px] bg-background border-r border-border shadow-[4px_0_24px_rgba(0,0,0,0.05)] dark:shadow-[4px_0_24px_rgba(0,0,0,0.2)] z-40 transition-transform duration-300 ease-in-out flex flex-col rounded-r-2xl overflow-hidden",
+          "fixed top-0 bottom-0 left-[72px] w-[396px] bg-background border-r border-border shadow-[4px_0_24px_rgba(0,0,0,0.05)] dark:shadow-[4px_0_24px_rgba(0,0,0,0.2)] z-40 transition-transform duration-300 ease-in-out flex flex-col overflow-hidden",
           isNotificationsOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >
-        <div className="p-6 pt-8 pb-4">
+        <div className="p-6 pt-8 pb-4 relative">
+          <button 
+            onClick={() => setIsNotificationsOpen(false)}
+            className="absolute top-8 right-6 text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <XCircle className="h-6 w-6" />
+          </button>
           <h2 className="text-2xl font-semibold mb-6">Notifications</h2>
         </div>
         <div className="flex-1 overflow-y-auto px-6 pb-6">
