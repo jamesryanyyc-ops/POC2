@@ -43,7 +43,7 @@ export const CURRENT_USER: User = {
   id: "me",
   username: "design.engineer",
   fullName: "Design Engineer",
-  avatar: "/images/avatar_me.jpg",
+  avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop",
   bio: "Creating digital experiences 🎨\n📍 San Francisco",
   followers: 1240,
   following: 450,
@@ -55,20 +55,20 @@ export const USERS: User[] = [
     id: "u1",
     username: "alex_photos",
     fullName: "Alex Rivera",
-    avatar: "/images/avatar_alex.jpg",
+    avatar: "https://images.unsplash.com/photo-1552058544-f2b08422138a?w=150&h=150&fit=crop",
     isVerified: true,
   },
   {
     id: "u2",
     username: "creative_studio",
     fullName: "Creative Studio",
-    avatar: "/images/avatar_2.jpg",
+    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop",
   },
   {
     id: "u3",
     username: "travel_diary",
     fullName: "Sarah Jenkins",
-    avatar: "/images/avatar_3.jpg",
+    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop",
   },
   {
     id: "u4",
@@ -134,7 +134,7 @@ export const POSTS: Post[] = [
   {
     id: "p1",
     user: USERS[0],
-    imageUrl: "/images/post_1.jpg",
+    imageUrl: "https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=1000&q=80&fit=crop",
     caption: "Morning coffee vibes ☕️ #morning #coffee #aesthetic",
     likes: 124,
     timestamp: "2h ago",
@@ -167,7 +167,7 @@ export const POSTS: Post[] = [
   {
     id: "p2",
     user: USERS[2],
-    imageUrl: "/images/post_2.jpg",
+    imageUrl: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1000&q=80&fit=crop",
     caption: "Chasing sunsets along the coast 🌊",
     likes: 853,
     timestamp: "5h ago",
@@ -178,7 +178,7 @@ export const POSTS: Post[] = [
   {
     id: "p3",
     user: USERS[1],
-    imageUrl: "/images/post_3.jpg",
+    imageUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=1000&q=80&fit=crop",
     caption: "New architecture project coming together nicely. Can't wait to share more details soon!",
     likes: 432,
     timestamp: "8h ago",
@@ -189,7 +189,7 @@ export const POSTS: Post[] = [
   {
     id: "p4",
     user: USERS[3],
-    imageUrl: "/images/post_4.jpg",
+    imageUrl: "https://images.unsplash.com/photo-1484723091791-c0e7e14a1db5?w=1000&q=80&fit=crop",
     caption: "Sunday brunch is the best brunch 🥞",
     likes: 210,
     timestamp: "1d ago",
@@ -198,7 +198,7 @@ export const POSTS: Post[] = [
   {
     id: "p5",
     user: USERS[4],
-    imageUrl: "/images/post_5.jpg",
+    imageUrl: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=1000&q=80&fit=crop",
     caption: "The view from the top makes it all worth it 🏔️",
     likes: 1542,
     timestamp: "2d ago",

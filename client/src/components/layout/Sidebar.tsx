@@ -315,7 +315,7 @@ export function Sidebar() {
                  <span className="font-bold">{USERS[2].username}</span> liked your post. <span className="text-muted-foreground">3w</span>
                </div>
                <div className="h-11 w-11 flex-shrink-0">
-                 <img src="/images/post_1.jpg" alt="Post" className="h-full w-full object-cover rounded-md cursor-pointer hover:opacity-80 transition-opacity" />
+                 <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=100&q=80&fit=crop" alt="Post" className="h-full w-full object-cover rounded-md cursor-pointer hover:opacity-80 transition-opacity" />
                </div>
              </div>
 
@@ -330,7 +330,7 @@ export function Sidebar() {
                  <span className="font-bold">{USERS[3].username}</span> mentioned you in a comment: "@design.engineer love this work!" <span className="text-muted-foreground">4w</span>
                </div>
                <div className="h-11 w-11 flex-shrink-0">
-                 <img src="/images/post_2.jpg" alt="Post" className="h-full w-full object-cover rounded-md cursor-pointer hover:opacity-80 transition-opacity" />
+                 <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=100&q=80&fit=crop" alt="Post" className="h-full w-full object-cover rounded-md cursor-pointer hover:opacity-80 transition-opacity" />
                </div>
              </div>
              
