@@ -15,7 +15,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { CURRENT_USER, USERS } from "@/lib/data";
 import logoImage from "@assets/shape-98_1771532730970.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 
 export function Sidebar() {
@@ -23,6 +23,11 @@ export function Sidebar() {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isNotificationsOpen, setIsNotificationsOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+
+  useEffect(() => {
+    setIsSearchOpen(false);
+    setIsNotificationsOpen(false);
+  }, [location]);
 
   const handleSearchClick = () => {
     setIsSearchOpen(!isSearchOpen);
@@ -68,24 +73,28 @@ export function Sidebar() {
       >
         <div className="px-3 mb-8 h-8 flex items-center relative">
           {/* Full Logo - visible on hover (only if no pane is open) */}
-          <div className={cn(
-            "hidden w-full items-center gap-3 transition-opacity duration-300 animate-in fade-in zoom-in-95",
-            !isAnyPaneOpen && "group-hover/sidebar:flex"
-          )}>
-            <img src={logoImage} alt="Logo" className="h-8 w-auto dark:invert" />
-            <span className="font-sans text-xl font-semibold tracking-tight select-none">InstaVibe</span>
-          </div>
+          <Link href="/">
+            <a className={cn(
+              "hidden w-full items-center gap-3 transition-opacity duration-300 animate-in fade-in zoom-in-95 cursor-pointer",
+              !isAnyPaneOpen && "group-hover/sidebar:flex"
+            )}>
+              <img src={logoImage} alt="Logo" className="h-8 w-auto dark:invert" />
+              <span className="font-sans text-xl font-semibold tracking-tight select-none">InstaVibe</span>
+            </a>
+          </Link>
           
           {/* Icon Logo - visible by default, hidden on hover if no pane is open */}
-          <div className={cn(
-            "block mx-auto transition-opacity duration-300 absolute left-0 right-0 flex justify-center",
-            !isAnyPaneOpen && "group-hover/sidebar:hidden"
-          )}>
-              <img src={logoImage} alt="Logo" className="h-8 w-8 object-contain transition-transform hover:scale-105 dark:invert" />
-          </div>
+          <Link href="/">
+            <a className={cn(
+              "block mx-auto transition-opacity duration-300 absolute left-0 right-0 flex justify-center cursor-pointer",
+              !isAnyPaneOpen && "group-hover/sidebar:hidden"
+            )}>
+                <img src={logoImage} alt="Logo" className="h-8 w-8 object-contain transition-transform hover:scale-105 dark:invert" />
+            </a>
+          </Link>
         </div>
 
-        <nav className="flex-1 space-y-2">
+        <nav className="flex-1 flex flex-col justify-center space-y-2 py-4">
           {navItems.map((item) => {
             const isActive = location === item.href || (item.label === "Search" && isSearchOpen) || (item.label === "Notifications" && isNotificationsOpen);
             const Icon = item.icon;
