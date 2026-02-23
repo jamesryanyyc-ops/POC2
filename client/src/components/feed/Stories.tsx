@@ -1,5 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { STORIES } from "@/lib/data";
+import { STORIES, CURRENT_USER } from "@/lib/data";
 import { cn } from "@/lib/utils";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRef, useState } from "react";
@@ -42,13 +42,13 @@ export function Stories() {
       <div 
         ref={scrollRef}
         onScroll={checkScroll}
-        className="overflow-x-auto no-scrollbar touch-pan-x flex gap-4 px-4 md:px-0 scroll-smooth items-center"
+        className="overflow-x-auto overflow-y-visible no-scrollbar touch-pan-x flex gap-4 px-4 py-2 md:px-0 scroll-smooth items-center"
       >
         {/* Current User Story Add */}
         <div className="flex flex-col items-center gap-1 min-w-[80px] cursor-pointer group">
-          <div className="w-20 h-20 rounded-full p-[3px] relative">
+          <div className="w-20 h-20 rounded-full p-[3px] relative transition-transform group-hover:scale-105">
              <Avatar className="w-full h-full border border-border">
-                <AvatarImage src="/images/avatar_1.jpg" />
+                <AvatarImage src={CURRENT_USER.avatar} />
                 <AvatarFallback>ME</AvatarFallback>
              </Avatar>
              <div className="absolute bottom-0 right-0 bg-blue-500 rounded-full w-6 h-6 flex items-center justify-center border-[3px] border-background text-white text-sm font-bold">+</div>

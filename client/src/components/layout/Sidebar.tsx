@@ -75,7 +75,7 @@ export function Sidebar() {
           {/* Full Logo - visible on hover (only if no pane is open) */}
           <Link href="/">
             <a className={cn(
-              "hidden w-full items-center gap-3 transition-opacity duration-300 animate-in fade-in zoom-in-95 cursor-pointer",
+              "hidden w-full items-center gap-4 transition-opacity duration-300 animate-in fade-in zoom-in-95 cursor-pointer absolute left-3",
               !isAnyPaneOpen && "group-hover/sidebar:flex"
             )}>
               <img src={logoImage} alt="Logo" className="h-8 w-auto dark:invert" />
@@ -86,7 +86,7 @@ export function Sidebar() {
           {/* Icon Logo - visible by default, hidden on hover if no pane is open */}
           <Link href="/">
             <a className={cn(
-              "block mx-auto transition-opacity duration-300 absolute left-0 right-0 flex justify-center cursor-pointer",
+              "block transition-opacity duration-300 absolute left-3 cursor-pointer",
               !isAnyPaneOpen && "group-hover/sidebar:hidden"
             )}>
                 <img src={logoImage} alt="Logo" className="h-8 w-8 object-contain transition-transform hover:scale-105 dark:invert" />
