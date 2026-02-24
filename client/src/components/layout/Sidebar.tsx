@@ -71,25 +71,18 @@ export function Sidebar() {
           isAnyPaneOpen ? "w-[72px]" : "w-[72px] hover:w-[244px] group/sidebar"
         )}
       >
-        <div className="px-3 mb-8 h-8 flex items-center relative">
-          {/* Full Logo - visible on hover (only if no pane is open) */}
+        <div className="mb-8 mt-2 flex items-center">
           <Link href="/">
-            <a className={cn(
-              "hidden w-full items-center gap-4 transition-opacity duration-300 animate-in fade-in zoom-in-95 cursor-pointer absolute left-3",
-              !isAnyPaneOpen && "group-hover/sidebar:flex"
-            )}>
-              <img src={logoImage} alt="Logo" className="h-8 w-auto dark:invert" />
-              <span className="font-sans text-xl font-semibold tracking-tight select-none">InstaVibe</span>
-            </a>
-          </Link>
-          
-          {/* Icon Logo - visible by default, hidden on hover if no pane is open */}
-          <Link href="/">
-            <a className={cn(
-              "block transition-opacity duration-300 absolute left-3 cursor-pointer",
-              !isAnyPaneOpen && "group-hover/sidebar:hidden"
-            )}>
-                <img src={logoImage} alt="Logo" className="h-8 w-8 object-contain transition-transform hover:scale-105 dark:invert" />
+            <a className="flex items-center gap-4 p-3 w-full cursor-pointer group/logo">
+              <div className="min-w-[24px] flex justify-center">
+                <img src={logoImage} alt="Logo" className="h-6 w-6 object-contain transition-transform group-hover/logo:scale-105 dark:invert" />
+              </div>
+              <span className={cn(
+                "font-sans text-xl font-semibold tracking-tight select-none opacity-0 transition-opacity duration-200 delay-75 whitespace-nowrap",
+                !isAnyPaneOpen && "group-hover/sidebar:opacity-100"
+              )}>
+                InstaVibe
+              </span>
             </a>
           </Link>
         </div>
@@ -150,7 +143,7 @@ export function Sidebar() {
           })}
         </nav>
 
-        <div className="mt-auto px-3">
+        <div className="mt-auto">
           <button className="flex items-center gap-4 p-3 w-full rounded-md hover:bg-sidebar-accent text-left group overflow-hidden">
             <div className="min-w-[24px] flex justify-center">
                <Menu className="h-6 w-6 transition-transform group-hover:scale-105 stroke-[2px]" />
