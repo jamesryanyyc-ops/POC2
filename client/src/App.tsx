@@ -17,6 +17,7 @@ function Router() {
       <Switch>
         <Route path="/" component={Home} />
         <Route path="/profile" component={Profile} />
+        <Route path="/profile/:username" component={Profile} />
         <Route path="/explore" component={Explore} />
         <Route path="/messages" component={Messages} />
         {/* Fallback routes for now */}

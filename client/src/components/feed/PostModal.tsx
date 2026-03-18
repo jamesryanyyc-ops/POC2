@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import type { Post as PostType } from "@/lib/data";
 import { useState } from "react";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
+import { Link } from "wouter";
 
 
 interface PostModalProps {
@@ -30,8 +31,8 @@ export function PostModal({ post, children, isLiked, isSaved, onLike, onSave, li
             <DialogDescription>{post.caption}</DialogDescription>
         </VisuallyHidden.Root>
         
-        <DialogClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground z-50">
-          <X className="h-6 w-6 text-foreground" />
+        <DialogClose className="fixed right-4 top-4 z-[60] p-2 text-white hover:opacity-70 transition-opacity focus:outline-none">
+          <X className="h-6 w-6" />
           <span className="sr-only">Close</span>
         </DialogClose>
 
@@ -50,14 +51,18 @@ export function PostModal({ post, children, isLiked, isSaved, onLike, onSave, li
           {/* Header */}
           <div className="flex items-center justify-between p-3 border-b border-border">
             <div className="flex items-center gap-3">
-              <div className="story-ring p-[2px] rounded-full cursor-pointer hover:scale-105 transition-transform">
-                <Avatar className="h-8 w-8 story-ring-inner border-2 border-background">
-                  <AvatarImage src={post.user.avatar} />
-                  <AvatarFallback>{post.user.username[0]}</AvatarFallback>
-                </Avatar>
-              </div>
+              <Link href={`/profile/${post.user.username}`}>
+                <a className="story-ring p-[2px] rounded-full cursor-pointer hover:scale-105 transition-transform block">
+                  <Avatar className="h-8 w-8 story-ring-inner border-2 border-background">
+                    <AvatarImage src={post.user.avatar} />
+                    <AvatarFallback>{post.user.username[0]}</AvatarFallback>
+                  </Avatar>
+                </a>
+              </Link>
               <div className="flex flex-col text-sm">
-                <span className="font-semibold cursor-pointer hover:opacity-70">{post.user.username}</span>
+                <Link href={`/profile/${post.user.username}`}>
+                  <a className="font-semibold cursor-pointer hover:opacity-70">{post.user.username}</a>
+                </Link>
                 {post.location && <span className="text-xs text-muted-foreground">{post.location}</span>}
               </div>
             </div>
@@ -69,14 +74,18 @@ export function PostModal({ post, children, isLiked, isSaved, onLike, onSave, li
             
             {/* Caption as first comment */}
             <div className="flex gap-3">
-              <div className="story-ring p-[2px] rounded-full h-fit flex-shrink-0">
-                <Avatar className="h-8 w-8 story-ring-inner border-2 border-background">
-                    <AvatarImage src={post.user.avatar} />
-                    <AvatarFallback>{post.user.username[0]}</AvatarFallback>
-                </Avatar>
-              </div>
+              <Link href={`/profile/${post.user.username}`}>
+                <a className="story-ring p-[2px] rounded-full h-fit flex-shrink-0 block">
+                  <Avatar className="h-8 w-8 story-ring-inner border-2 border-background">
+                      <AvatarImage src={post.user.avatar} />
+                      <AvatarFallback>{post.user.username[0]}</AvatarFallback>
+                  </Avatar>
+                </a>
+              </Link>
               <div className="text-sm flex-1">
-                <span className="font-bold mr-2">{post.user.username}</span>
+                <Link href={`/profile/${post.user.username}`}>
+                  <a className="font-bold mr-2 hover:opacity-70">{post.user.username}</a>
+                </Link>
                 <span>{post.caption}</span>
                 <div className="text-xs text-muted-foreground mt-2">{post.timestamp}</div>
               </div>
@@ -85,13 +94,19 @@ export function PostModal({ post, children, isLiked, isSaved, onLike, onSave, li
             {/* Comments List */}
             {post.comments.map(comment => (
                 <div key={comment.id} className="flex gap-3">
-                  <Avatar className="h-8 w-8 flex-shrink-0 cursor-pointer">
-                    <AvatarImage src={comment.user.avatar} />
-                    <AvatarFallback>{comment.user.username[0]}</AvatarFallback>
-                  </Avatar>
+                  <Link href={`/profile/${comment.user.username}`}>
+                    <a className="block">
+                      <Avatar className="h-8 w-8 flex-shrink-0 cursor-pointer">
+                        <AvatarImage src={comment.user.avatar} />
+                        <AvatarFallback>{comment.user.username[0]}</AvatarFallback>
+                      </Avatar>
+                    </a>
+                  </Link>
                   <div className="text-sm flex-1">
                     <div className="flex items-baseline">
-                        <span className="font-bold mr-2 hover:opacity-70 cursor-pointer">{comment.user.username}</span>
+                        <Link href={`/profile/${comment.user.username}`}>
+                          <a className="font-bold mr-2 hover:opacity-70 cursor-pointer">{comment.user.username}</a>
+                        </Link>
                         <span>{comment.text}</span>
                     </div>
                     <div className="flex gap-3 text-xs text-muted-foreground mt-1 items-center">

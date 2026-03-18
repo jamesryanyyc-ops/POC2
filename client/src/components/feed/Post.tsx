@@ -32,15 +32,19 @@ export function Post({ post }: PostProps) {
       {/* Header */}
       <div className="flex items-center justify-between p-3">
         <div className="flex items-center gap-3">
-          <div className="story-ring p-[2px] rounded-full cursor-pointer hover:scale-105 transition-transform">
-            <Avatar className="h-8 w-8 story-ring-inner border-2 border-background">
-              <AvatarImage src={post.user.avatar} />
-              <AvatarFallback>{post.user.username[0]}</AvatarFallback>
-            </Avatar>
-          </div>
+          <Link href={`/profile/${post.user.username}`}>
+            <a className="story-ring p-[2px] rounded-full cursor-pointer hover:scale-105 transition-transform block">
+              <Avatar className="h-8 w-8 story-ring-inner border-2 border-background">
+                <AvatarImage src={post.user.avatar} />
+                <AvatarFallback>{post.user.username[0]}</AvatarFallback>
+              </Avatar>
+            </a>
+          </Link>
           <div className="flex flex-col leading-none">
             <div className="flex items-center gap-1">
-                <span className="font-semibold text-sm cursor-pointer hover:opacity-70">{post.user.username}</span>
+                <Link href={`/profile/${post.user.username}`}>
+                  <a className="font-semibold text-sm cursor-pointer hover:opacity-70">{post.user.username}</a>
+                </Link>
                 {post.user.isVerified && <span className="text-blue-500 text-[10px]">Verify</span>}
                 <span className="text-muted-foreground text-xs">• {post.timestamp}</span>
             </div>
