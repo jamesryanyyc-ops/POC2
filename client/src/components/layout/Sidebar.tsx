@@ -67,18 +67,18 @@ export function Sidebar() {
     <>
       <div 
         className={cn(
-          "hidden md:flex flex-col h-full border-r border-sidebar-border bg-sidebar text-sidebar-foreground fixed left-0 top-0 p-3 pt-8 pb-5 z-50 transition-all duration-300 ease-in-out overflow-hidden",
+          "hidden md:flex flex-col h-full bg-sidebar text-sidebar-foreground fixed left-0 top-0 p-3 pb-5 z-50 transition-all duration-300 ease-in-out overflow-hidden",
           isAnyPaneOpen ? "w-[72px]" : "w-[72px] hover:w-[244px] group/sidebar"
         )}
       >
-        <div className="mb-8 mt-2 flex items-center">
+        <div className="mb-8 mt-3 flex items-center">
           <Link href="/">
-            <a className="flex items-center gap-4 p-3 w-full cursor-pointer group/logo">
+            <a className="flex items-center gap-4 w-full cursor-pointer group/logo p-3">
               <div className="min-w-[24px] flex justify-center">
                 <img src={logoImage} alt="Logo" className="h-6 w-6 object-contain transition-transform group-hover/logo:scale-105 dark:invert" />
               </div>
               <span className={cn(
-                "font-sans text-xl font-semibold tracking-tight select-none opacity-0 transition-opacity duration-200 delay-75 whitespace-nowrap",
+                "font-['Grand_Hotel'] text-3xl tracking-tight select-none opacity-0 transition-opacity duration-200 delay-75 whitespace-nowrap ml-1",
                 !isAnyPaneOpen && "group-hover/sidebar:opacity-100"
               )}>
                 InstaVibe
@@ -110,8 +110,8 @@ export function Sidebar() {
                         <Icon
                         className={cn(
                             "h-6 w-6 transition-transform group-hover:scale-105",
-                            isActive && !isAnyPaneOpen ? "stroke-[3px]" : "stroke-[2px]",
-                            ((isSearchOpen && item.label === "Search") || (isNotificationsOpen && item.label === "Notifications")) && "stroke-[3px]"
+                            isActive ? "fill-foreground stroke-foreground" : "stroke-[2px] fill-none",
+                            ((isSearchOpen && item.label === "Search") || (isNotificationsOpen && item.label === "Notifications")) && "fill-foreground stroke-foreground"
                         )}
                         />
                     )
@@ -161,7 +161,7 @@ export function Sidebar() {
       {/* Search Panel Slide-out */}
       <div 
         className={cn(
-          "fixed top-0 bottom-0 left-[72px] w-[396px] bg-background border-r border-border shadow-[4px_0_24px_rgba(0,0,0,0.05)] dark:shadow-[4px_0_24px_rgba(0,0,0,0.2)] z-40 transition-transform duration-300 ease-in-out flex flex-col overflow-hidden",
+          "fixed top-0 bottom-0 left-[72px] w-[396px] bg-background z-40 transition-transform duration-300 ease-in-out flex flex-col overflow-hidden",
           isSearchOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >
@@ -273,7 +273,7 @@ export function Sidebar() {
       {/* Notifications Panel Slide-out */}
       <div 
         className={cn(
-          "fixed top-0 bottom-0 left-[72px] w-[396px] bg-background border-r border-border shadow-[4px_0_24px_rgba(0,0,0,0.05)] dark:shadow-[4px_0_24px_rgba(0,0,0,0.2)] z-40 transition-transform duration-300 ease-in-out flex flex-col overflow-hidden",
+          "fixed top-0 bottom-0 left-[72px] w-[396px] bg-background z-40 transition-transform duration-300 ease-in-out flex flex-col overflow-hidden",
           isNotificationsOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >

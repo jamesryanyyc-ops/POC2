@@ -43,13 +43,13 @@ export function Stories() {
       <div 
         ref={scrollRef}
         onScroll={checkScroll}
-        className="overflow-x-auto overflow-y-visible no-scrollbar touch-pan-x flex gap-5 px-4 py-2 md:px-0 scroll-smooth items-center"
+        className="overflow-x-auto overflow-y-visible no-scrollbar touch-pan-x flex gap-4 px-4 py-2 md:px-0 scroll-smooth items-center"
       >
         {STORIES.map((story) => (
           <Link key={story.id} href={`/profile/${story.user.username}`}>
-            <a className="flex flex-col items-center gap-1 min-w-[85px] cursor-pointer group">
+            <a className="flex flex-col items-center gap-1 min-w-[76px] cursor-pointer group">
               <div className={cn(
-                "w-[85px] h-[85px] rounded-full p-[3px] transition-transform group-hover:scale-105",
+                "w-[76px] h-[76px] rounded-full p-[3px] transition-transform group-hover:scale-105",
                 story.hasUnseen ? "story-ring" : "border border-border"
               )}>
                 <Avatar className="w-full h-full story-ring-inner border-[3px] border-background">
@@ -57,7 +57,7 @@ export function Stories() {
                   <AvatarFallback>{story.user.username[0]}</AvatarFallback>
                 </Avatar>
               </div>
-              <span className="text-xs truncate w-[85px] text-center mt-1">{story.user.username}</span>
+              <span className="text-xs truncate w-[76px] text-center mt-1">{story.user.username}</span>
             </a>
           </Link>
         ))}
