@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { CURRENT_USER, USERS } from "@/lib/data";
-import logoImage from "@assets/shape-98_1771532730970.png";
+import logoImage from "@assets/Insta_1773869818929.png";
 import { useState, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 

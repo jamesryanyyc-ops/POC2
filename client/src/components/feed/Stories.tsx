@@ -42,24 +42,24 @@ export function Stories() {
       <div 
         ref={scrollRef}
         onScroll={checkScroll}
-        className="overflow-x-auto overflow-y-visible no-scrollbar touch-pan-x flex gap-4 px-4 py-2 md:px-0 scroll-smooth items-center"
+        className="overflow-x-auto overflow-y-visible no-scrollbar touch-pan-x flex gap-5 px-4 py-2 md:px-0 scroll-smooth items-center"
       >
         {/* Current User Story Add */}
-        <div className="flex flex-col items-center gap-1 min-w-[80px] cursor-pointer group">
-          <div className="w-20 h-20 rounded-full p-[3px] relative transition-transform group-hover:scale-105">
+        <div className="flex flex-col items-center gap-1 min-w-[85px] cursor-pointer group">
+          <div className="w-[85px] h-[85px] rounded-full p-[3px] relative transition-transform group-hover:scale-105">
              <Avatar className="w-full h-full border border-border">
                 <AvatarImage src={CURRENT_USER.avatar} />
                 <AvatarFallback>ME</AvatarFallback>
              </Avatar>
              <div className="absolute bottom-0 right-0 bg-blue-500 rounded-full w-6 h-6 flex items-center justify-center border-[3px] border-background text-white text-sm font-bold">+</div>
           </div>
-          <span className="text-xs truncate w-20 text-center text-muted-foreground mt-1">Your story</span>
+          <span className="text-xs truncate w-[85px] text-center text-muted-foreground mt-1">Your story</span>
         </div>
 
         {STORIES.map((story) => (
-          <div key={story.id} className="flex flex-col items-center gap-1 min-w-[80px] cursor-pointer group">
+          <div key={story.id} className="flex flex-col items-center gap-1 min-w-[85px] cursor-pointer group">
             <div className={cn(
-              "w-20 h-20 rounded-full p-[3px] transition-transform group-hover:scale-105",
+              "w-[85px] h-[85px] rounded-full p-[3px] transition-transform group-hover:scale-105",
               story.hasUnseen ? "story-ring" : "border border-border"
             )}>
               <Avatar className="w-full h-full story-ring-inner border-[3px] border-background">
@@ -67,7 +67,7 @@ export function Stories() {
                 <AvatarFallback>{story.user.username[0]}</AvatarFallback>
               </Avatar>
             </div>
-            <span className="text-xs truncate w-20 text-center mt-1">{story.user.username}</span>
+            <span className="text-xs truncate w-[85px] text-center mt-1">{story.user.username}</span>
           </div>
         ))}
       </div>

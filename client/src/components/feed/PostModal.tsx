@@ -1,4 +1,4 @@
-import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger, DialogTitle, DialogDescription, DialogClose } from "@/components/ui/dialog";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Heart, MessageCircle, Send, Bookmark, MoreHorizontal, Smile, X } from "lucide-react";
@@ -24,11 +24,16 @@ export function PostModal({ post, children, isLiked, isSaved, onLike, onSave, li
       <DialogTrigger asChild>
         {children}
       </DialogTrigger>
-      <DialogContent className="w-[60vw] h-[90vh] max-w-none p-0 gap-0 overflow-hidden flex flex-col md:flex-row border-none bg-background rounded-r-lg">
+      <DialogContent className="w-[60vw] h-[90vh] max-w-none p-0 gap-0 overflow-hidden flex flex-col md:flex-row border-none bg-background rounded-r-lg group/modal">
         <VisuallyHidden.Root>
             <DialogTitle>Post by {post.user.username}</DialogTitle>
             <DialogDescription>{post.caption}</DialogDescription>
         </VisuallyHidden.Root>
+        
+        <DialogClose className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground z-50">
+          <X className="h-6 w-6 text-foreground" />
+          <span className="sr-only">Close</span>
+        </DialogClose>
 
         {/* Left: Image */}
         <div className="hidden md:flex flex-1 bg-black items-center justify-center relative">
