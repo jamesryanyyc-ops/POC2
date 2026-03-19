@@ -9,6 +9,7 @@ import Home from "@/pages/Home";
 import Profile from "@/pages/Profile";
 import Explore from "@/pages/Explore";
 import Messages from "@/pages/Messages";
+import Create from "@/pages/Create";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -20,6 +21,7 @@ function Router() {
         <Route path="/profile/:username" component={Profile} />
         <Route path="/explore" component={Explore} />
         <Route path="/messages" component={Messages} />
+        <Route path="/create" component={Create} />
         {/* Fallback routes for now */}
         <Route path="/search" component={Explore} /> 
         <Route path="/reels" component={Home} />
