@@ -4,6 +4,7 @@ import { ArrowLeft, Image as ImageIcon, Video, MapPin, Smile, MoreHorizontal } f
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { CURRENT_USER } from "@/lib/data";
+import { cn } from "@/lib/utils";
 
 export default function Create() {
   const [location, setLocation] = useLocation();
