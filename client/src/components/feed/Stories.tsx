@@ -43,18 +43,18 @@ export function Stories() {
       <div 
         ref={scrollRef}
         onScroll={checkScroll}
-        className="overflow-x-auto overflow-y-visible no-scrollbar touch-pan-x flex gap-4 md:gap-0 md:justify-between px-4 py-2 md:px-0 scroll-smooth items-center w-full"
+        className="overflow-x-auto overflow-y-visible no-scrollbar touch-pan-x flex gap-[10px] px-4 py-2 md:px-0 scroll-smooth items-center max-w-[630px] mx-auto w-full"
       >
         {STORIES.slice(0, 6).map((story) => (
           <Link key={story.id} href={`/profile/${story.user.username}`}>
-            <a className="flex flex-col items-center gap-1 cursor-pointer group min-w-[96px] w-[96px]">
-              <div className="w-[96px] h-[96px] rounded-full p-[3px] transition-transform group-hover:scale-105 story-ring">
-                <Avatar className="w-full h-full story-ring-inner border-[3px] border-background">
+            <a className="flex flex-col items-center gap-1 cursor-pointer group min-w-[66px] w-[66px]">
+              <div className="w-[66px] h-[66px] rounded-full p-[2px] transition-transform group-hover:scale-105 story-ring">
+                <Avatar className="w-full h-full story-ring-inner border-[2px] border-background">
                   <AvatarImage src={story.user.avatar} />
                   <AvatarFallback>{story.user.username[0]}</AvatarFallback>
                 </Avatar>
               </div>
-              <span className="text-sm truncate w-[96px] text-center mt-1">{story.user.username}</span>
+              <span className="text-xs truncate w-[66px] text-center mt-1">{story.user.username}</span>
             </a>
           </Link>
         ))}
