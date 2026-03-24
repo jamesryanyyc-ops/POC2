@@ -89,7 +89,10 @@ export function Sidebar() {
 
         <nav className="flex-1 flex flex-col justify-center space-y-2 py-4">
           {navItems.map((item) => {
-            const isActive = location === item.href || (item.label === "Search" && isSearchOpen) || (item.label === "Notifications" && isNotificationsOpen);
+            // Only set exact match for root to avoid highlighting home when on profile,
+            // and checking prefix for profile links
+            const isExactMatch = item.href === "/" ? location === "/" : (item.href ? location.startsWith(item.href) : false);
+            const isActive = isExactMatch || (item.label === "Search" && isSearchOpen) || (item.label === "Notifications" && isNotificationsOpen);
             const Icon = item.icon;
             
             const content = (

@@ -111,7 +111,7 @@ export default function Profile() {
              <div key={i} className="flex flex-col items-center gap-2 min-w-[64px] md:min-w-[85px] cursor-pointer group">
                  <div className="w-[64px] h-[64px] md:w-[85px] md:h-[85px] rounded-full border border-border bg-secondary flex items-center justify-center p-[3px]">
                     <div className="w-full h-full rounded-full bg-zinc-200 dark:bg-zinc-800 border-[3px] border-background flex items-center justify-center overflow-hidden">
-                        <img src={`https://images.unsplash.com/photo-${1500000000000 + i * 10000}?w=150&h=150&fit=crop`} className="w-full h-full object-cover" />
+                        <img src={[`https://images.unsplash.com/photo-1511367461989-f85701d4c2e2?w=150&h=150&fit=crop`, `https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=150&h=150&fit=crop`, `https://images.unsplash.com/photo-1506744626753-14c183e25d41?w=150&h=150&fit=crop`][i-1]} className="w-full h-full object-cover" />
                     </div>
                  </div>
                  <span className="text-xs font-medium">Highlight {i}</span>
